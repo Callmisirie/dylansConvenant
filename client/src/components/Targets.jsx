@@ -5,13 +5,13 @@ import Arrow from "../assets/svg/Arrow";
 import { GradientLight } from "./design/Benefits";
 import ClipPath from "../assets/svg/ClipPath";
 
-const Benefits = () => {
+const Targets = () => {
   return (
-    <Section id="features">
-      <div className="container relative z-2">
+    <Section id="targets">
+      <div className="container relative z-2 mt-10 lg:mt-5">
         <Heading
           className="md:max-w-md lg:max-w-2xl"
-          title="Chat Smarter, Not Harder with Brainwave"
+          title="Set Targets, Crush Them, and Set More"
         />
         <div className="flex flex-wrap gap-10 mb-10">
           {benefits.map((item) => (
@@ -72,4 +72,4 @@ const Benefits = () => {
   );
 };
 
-export default Benefits;
+export default Targets;

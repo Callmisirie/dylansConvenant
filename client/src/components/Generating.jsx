@@ -8,7 +8,7 @@ const Generating = ({ className }) => {
       } text-base`}
     >
       <img className="w-5 h-5 mr-4" src={loading} alt="loading" />
-      AI is generating
+      1 Million pull-ups generating
     </div>
   );
 };

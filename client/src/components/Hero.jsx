@@ -26,9 +26,9 @@ const Hero = () => {
       m-auto text-center mb-[4rem] md:mb-20 lg:mb-[6rem]"
         >
           <h1 className="h1 mb-6">
-            Explore the Possibilities of&nbsp;AI&nbsp;Chatting with{" "}
+            Explore a warrior's&nbsp;mind&nbsp;with{" "}
             <span className="inline-block relative">
-              Brainwave
+              DylansCovenant
               <img
                 src={curve}
                 className="absolute top-full left-0 
@@ -43,8 +43,9 @@ const Hero = () => {
             className="body-1 max-w-3xl mx-auto mb-6 
           text-n-2 lg:mb-8"
           >
-            Unleash the power of AI within Brainwave. Upgrade your productivity
-            with Brainwave, the open AI chat app.
+            Unleash the power of the mind and body. 
+            Upgrade your productivity in life by setting goals along with DylansCovenant. 
+            The world is yours for the taking.
           </p>
           <Button href="/pricing" white>
             Get started
@@ -89,7 +90,7 @@ const Hero = () => {
                   <Notification
                     className="hidden absolute -right-[5.5rem] bottom-[11rem]
                   w-[18rem] xl:flex"
-                    title="Code generation"
+                    title="Set goals"
                   />
                 </ScrollParallax>
               </div>

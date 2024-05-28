@@ -52,10 +52,10 @@ import roadmap3 from "./roadmap/image-3.png";
 import roadmap4 from "./roadmap/image-4.png";
 import undone from "./roadmap/undone.svg";
 
-import notification1 from "./notification/image-1.png";
-import notification2 from "./notification/image-2.png";
-import notification3 from "./notification/image-3.png";
-import notification4 from "./notification/image-4.png";
+import notification1 from "./notification/barbell.png";
+import notification2 from "./notification/meditation.png";
+import notification3 from "./notification/treadmill.png";
+import notification4 from "./notification/dumbbell.png";
 
 import benefitCard1 from "./benefits/card-1.svg";
 import benefitCard2 from "./benefits/card-2.svg";
@@ -74,6 +74,11 @@ import facebook from "./socials/facebook.svg";
 import instagram from "./socials/instagram.svg";
 import telegram from "./socials/telegram.svg";
 import twitter from "./socials/twitter.svg";
+
+import fitnessNutrition from "./fitnessNutrition.svg";
+import fitness from "./fitness.svg";
+import fitnessFacilities from "./fitnessFacilities.svg";
+import health from "./health.svg";
 
 export {
   brainwave,
@@ -124,6 +129,10 @@ export {
   roadmap3,
   roadmap4,
   undone,
+  fitnessNutrition, 
+  fitness, 
+  fitnessFacilities, 
+  health,
   notification1,
   notification2,
   notification3,

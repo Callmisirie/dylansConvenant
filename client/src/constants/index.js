@@ -10,16 +10,17 @@ import {
   discordBlack,
   facebook,
   figma,
-  file02,
+  fitnessNutrition, 
+  fitness, 
+  fitnessFacilities, 
+  health,
   framer,
-  homeSmile,
   instagram,
   notification2,
   notification3,
   notification4,
   notion,
   photoshop,
-  plusSquare,
   protopie,
   raindrop,
   recording01,
@@ -28,7 +29,6 @@ import {
   roadmap2,
   roadmap3,
   roadmap4,
-  searchMd,
   slack,
   sliders04,
   telegram,
@@ -39,39 +39,31 @@ import {
 export const navigation = [
   {
     id: "0",
-    title: "Features",
-    url: "#features",
+    title: "Home",
+    hash: "#hero",
+    url: "/"
   },
   {
     id: "1",
-    title: "Pricing",
-    url: "#pricing",
+    title: "Targets",
+    hash: "#targets",
+    url: "/"
   },
   {
     id: "2",
-    title: "How to use",
-    url: "#how-to-use",
-  },
-  {
-    id: "3",
-    title: "Roadmap",
-    url: "#roadmap",
-  },
-  {
-    id: "4",
     title: "New account",
-    url: "#signup",
+    url: "/signup",
     onlyMobile: true,
   },
   {
-    id: "5",
+    id: "3",
     title: "Sign in",
-    url: "#login",
+    url: "/login",
     onlyMobile: true,
   },
 ];
 
-export const heroIcons = [homeSmile, file02, searchMd, plusSquare];
+export const heroIcons = [fitnessNutrition, fitness, fitnessFacilities, health];
 
 export const notificationImages = [notification4, notification3, notification2];
 

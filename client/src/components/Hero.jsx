@@ -1,4 +1,4 @@
-import { curve, heroBackground, robot } from "../assets";
+import { heroBackground, robot } from "../assets";
 import Button from "./Button";
 import Section from "./Section";
 import { BackgroundCircles, BottomLine, Gradient } from "./design/Hero";
@@ -29,14 +29,6 @@ const Hero = () => {
             Explore a warrior's&nbsp;mind&nbsp;with{" "}
             <span className="inline-block relative">
               DylansCovenant
-              <img
-                src={curve}
-                className="absolute top-full left-0 
-                w-full xl:-mt-2"
-                width={624}
-                height={28}
-                alt="curve"
-              />
             </span>
           </h1>
           <p
@@ -47,7 +39,7 @@ const Hero = () => {
             Upgrade your productivity in life by setting goals along with DylansCovenant. 
             The world is yours for the taking.
           </p>
-          <Button href="/pricing" white>
+          <Button href="/#targets" white>
             Get started
           </Button>
         </div>

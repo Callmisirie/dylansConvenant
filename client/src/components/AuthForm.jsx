@@ -1,20 +1,54 @@
 import { form } from "../constants";
 import Input from "./Input";
 import { useState } from "react";
+import axios from 'axios';
+import {useCookies} from "react-cookie"; 
+import { useNavigate } from "react-router-dom"; 
 
-const AuthForm = ({type}) => {
+
+const AuthForm = ({authType, type}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [actionMessage, setActionMessage] = useState(type);
+  const [ , setCookies] = useCookies(["userAccess_token"]);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async () => {
-    // setIsDisabled(true);
-    console.log({email, password});
+  const handleSubmit = async () => {  
+    const formType = type === "Register" ? "register" : "login" 
+    setActionMessage("Processing");  
+    setIsDisabled(true);
+
+    try {
+        const response = await axios.post(`http://localhost:4001/auth/user/${formType}`, {email, password});
+        const {message, color, token} = response.data;
+        setIsDisabled(false);
+        setActionMessage(type);
+        if (color === "green") {
+          setEmail("");
+          setPassword("");          
+        }
+        if (type === "Login") {
+          if (token === undefined) {
+            setCookies("userAccess_token",  null);
+          }else {
+              setCookies("userAccess_token", token);
+          }          
+        }
+        if (response.data.token) {
+          navigate("/")
+          window.scrollTo(0, 0);
+        }
+      } catch (error) {
+          setIsDisabled(false);
+          console.error(error);
+          setActionMessage(type);
+      }
   };
 
   return (
@@ -40,6 +74,7 @@ const AuthForm = ({type}) => {
                     handleChange={feature === "Email" ? setEmail : setPassword}
                     name={feature}
                     placeholder={feature}
+                    value={feature === "Email" ? email : password}
                     >
                   </Input>
                   </li>
@@ -58,7 +93,7 @@ const AuthForm = ({type}) => {
               rounded-full text-white border-stroke-1"
               disabled={isDisabled}
               onClick={handleSubmit}>
-                  {type}
+                  {actionMessage}
               </button>
             </div>
           </div>          

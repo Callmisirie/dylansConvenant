@@ -7,7 +7,6 @@ const Input = ({type, value, placeholder, handleChange, resetMessage}) => {
     value={value} 
     onChange={(e) => {
         handleChange(e.target.value)
-        resetMessage("")
     }} 
     placeholder={placeholder}/> 
   )

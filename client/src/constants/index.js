@@ -61,6 +61,13 @@ export const navigation = [
     url: "/login",
     onlyMobile: true,
   },
+  {
+    id: "4",
+    title: "Sign out",
+    url: "/",
+    out: "out",
+    onlyMobile: true,
+  },
 ];
 
 export const heroIcons = [fitnessNutrition, fitness, fitnessFacilities, health];

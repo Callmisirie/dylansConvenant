@@ -45,6 +45,10 @@ router.post("/user/register", async (req, res)=> {
         const hash = bcrypt.hashSync(password, saltRounds);
         const newUser = new UserAuthModel({email : _.toLower(email), password : hash });
         const userResponse = await newUser.save();
+        console.log(userResponse);
+
+        const token = jwt.sign({id : userResponse._id}, secret);
+
 
         const newsletterSignup = await NewsletterSignupModel.findOne({email : _.toLower(email)});
         if (!newsletterSignup) {
@@ -64,7 +68,8 @@ router.post("/user/register", async (req, res)=> {
         //     html: `<p>You have successfully registered to CallmiNeon.</p>`
         //  });
 
-        return res.json({
+        res.json({
+            token, userID : userResponse._id, 
             message: "User successfully Register",
             color: "green"
         });

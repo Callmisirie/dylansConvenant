@@ -8,11 +8,12 @@ import { HamburgerMenu } from "./design/Header";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import {useCookies} from "react-cookie"; 
 
 const Header = () => {
   const { pathname, hash } = useLocation();
   const [openNavigation, setOpenNavigation] = useState(false);
-  console.log(pathname);
+  const [cookies, setCookies] = useCookies(["userAccess_token"]);
 
   useEffect(() => {
     if (openNavigation) {
@@ -30,7 +31,11 @@ const Header = () => {
     setOpenNavigation(!openNavigation);
   };
 
-  const handleClick = () => {
+  const handleClick = (out) => {
+    if (out === "out") {
+      setCookies("userAccess_token",  null);
+      window.scrollTo(0, 0);
+    }  
     if (!openNavigation) return;
 
     enablePageScroll();
@@ -85,7 +90,9 @@ const Header = () => {
                 <Link
                   key={item.id}
                   to={item.url}
-                  onClick={handleClick}
+                  onClick={() => {
+                    handleClick(item?.out)
+                  }}
                   className={`block relative font-code 
                 text-2xl uppercase text-n-1 
                 transition-colors hover:text-color-1 ${
@@ -111,6 +118,9 @@ const Header = () => {
         </Link>
         <Button className="hidden lg:flex" href="/login">
           Sign in
+        </Button>
+        <Button className="hidden lg:flex" href="/" out="out">
+          Sign out
         </Button>
         <Button
           className="ml-auto lg:hidden"

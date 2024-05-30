@@ -1,4 +1,4 @@
-import { heroBackground, robot } from "../assets";
+import { heroBackground, spiritual } from "../assets";
 import Button from "./Button";
 import Section from "./Section";
 import { BackgroundCircles, BottomLine, Gradient } from "./design/Hero";
@@ -35,7 +35,7 @@ const Hero = () => {
             className="body-1 max-w-3xl mx-auto mb-6 
           text-n-2 lg:mb-8"
           >
-            Unleash the power of the mind and body. 
+            Unleash the power of your mind and body. 
             Upgrade your productivity in life by setting goals along with DylansCovenant. 
             The world is yours for the taking.
           </p>
@@ -52,13 +52,13 @@ const Hero = () => {
               overflow-hidden md:aspect-[688/490] lg:aspect-[1024/490]"
               >
                 <img
-                  src={robot}
+                  src={spiritual}
                   className="w-full scale-[1.7]
                   translate-y-[8%] md:scale-[1] md:-translate-y-[10%]
                   lg:-translate-y-[23%]"
                   width={1024}
                   height={490}
-                  alt="AI"
+                  alt="Spirit"
                 />
                 <Generating
                   className="absolute left-4 right-4 bottom-5 md:left-1/2

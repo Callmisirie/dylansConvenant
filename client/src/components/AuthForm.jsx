@@ -20,7 +20,7 @@ const AuthForm = ({authType, type}) => {
   };
 
   const handleSubmit = async () => {  
-    const formType = type === "Register" ? "register" : "login" 
+    const formType = type === "Register" ? "register" : "login";
     setActionMessage("Processing");  
     setIsDisabled(true);
 
@@ -29,25 +29,26 @@ const AuthForm = ({authType, type}) => {
         const {message, color, token} = response.data;
         setIsDisabled(false);
         setActionMessage(type);
+
         if (color === "green") {
           setEmail("");
           setPassword("");          
         }
-        if (type === "Login") {
-          if (token === undefined) {
-            setCookies("userAccess_token",  null);
-          }else {
-              setCookies("userAccess_token", token);
-          }          
-        }
-        if (response.data.token) {
-          navigate("/")
+
+        if (token === undefined) {
+          setCookies("userAccess_token",  null);
+        }else {
+          setCookies("userAccess_token", token);
+        }          
+        
+        if (token && color === "green") {
+          navigate("/");
           window.scrollTo(0, 0);
         }
       } catch (error) {
-          setIsDisabled(false);
-          console.error(error);
-          setActionMessage(type);
+        setIsDisabled(false);
+        console.error(error);
+        setActionMessage(type);
       }
   };
 
@@ -86,14 +87,14 @@ const AuthForm = ({authType, type}) => {
               text-slate-gray mb-5
               text-sm cursor-pointer"
               onClick={togglePasswordVisibility}>
-              {!showPassword ? "Show Password" : "Hide Password"}
+                {!showPassword ? "Show Password" : "Hide Password"}
               </p>
               <button className="px-8 py-4 border flex
               font-montserrat text-lg leading-none bg-black
               rounded-full text-white border-stroke-1"
               disabled={isDisabled}
               onClick={handleSubmit}>
-                  {actionMessage}
+                {actionMessage}
               </button>
             </div>
           </div>          

@@ -8,6 +8,7 @@ const Button = ({ className, href, out, onClick, children, px, white }) => {
   const { hash } = useLocation();
   const LinkType = hash ? HashLink : Link;
   const [cookies, setCookies] = useCookies(["userAccess_token"]);
+  const [userIDCookies , setUserIDCookies] = useCookies(["userID"]);
 
   const classes = `button relative inline-flex 
   items-center justify-center h-11 transition-colors 
@@ -20,6 +21,7 @@ const Button = ({ className, href, out, onClick, children, px, white }) => {
   const handleClick = (out) => {
     if (out === "out") {
       setCookies("userAccess_token",  null);
+      setUserIDCookies("userID",  null);
       window.scrollTo(0, 0);
     }  
   };

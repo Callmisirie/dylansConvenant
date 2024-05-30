@@ -13,6 +13,7 @@ const AuthForm = ({authType, type}) => {
   const [password, setPassword] = useState("");
   const [actionMessage, setActionMessage] = useState(type);
   const [ , setCookies] = useCookies(["userAccess_token"]);
+  const [ , setUserIDCookies] = useCookies(["userID"]);
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -26,7 +27,7 @@ const AuthForm = ({authType, type}) => {
 
     try {
         const response = await axios.post(`http://localhost:4001/auth/user/${formType}`, {email, password});
-        const {message, color, token} = response.data;
+        const {message, color, token, userID} = response.data;
         setIsDisabled(false);
         setActionMessage(type);
 
@@ -37,8 +38,10 @@ const AuthForm = ({authType, type}) => {
 
         if (token === undefined) {
           setCookies("userAccess_token",  null);
+          setUserIDCookies("userID",  null);
         }else {
           setCookies("userAccess_token", token);
+          setUserIDCookies("userID",  userID);
         }          
         
         if (token && color === "green") {

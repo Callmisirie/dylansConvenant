@@ -5,6 +5,7 @@ import cors from "cors";
 
 import { newsletterRouter } from './routes/newsletter.js';
 import { authRouter } from "./routes/auth.js";
+import { targetRouter } from "./routes/target.js";
 import { reviewRouter } from './routes/review.js';
 import { passwordResetRouter } from './routes/passwordReset.js';
 
@@ -18,6 +19,7 @@ mongoose.connect("mongodb+srv://kensirie:"+ password +"@covenant.psbpnor.mongodb
 
 app.use("/newsletter", newsletterRouter);
 app.use("/auth", authRouter);
+app.use("/target", targetRouter);
 app.use("/review", reviewRouter);
 app.use("/passwordReset", passwordResetRouter);
 

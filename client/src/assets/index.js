@@ -1,4 +1,4 @@
-import brainwave from "./brainwave.svg";
+import hamsa from "./hamsa.png";
 import check from "./check.svg";
 import brainwaveSymbol from "./brainwave-symbol.svg";
 import brainwaveWhiteSymbol from "./brainwave-symbol-white.svg";
@@ -81,7 +81,7 @@ import fitnessFacilities from "./fitnessFacilities.svg";
 import health from "./health.svg";
 
 export {
-  brainwave,
+  hamsa,
   check,
   check2,
   loading1,

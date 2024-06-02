@@ -80,6 +80,8 @@ import fitness from "./fitness.svg";
 import fitnessFacilities from "./fitnessFacilities.svg";
 import health from "./health.svg";
 
+import addButton from "./addButton.svg";
+
 export {
   hamsa,
   check,
@@ -129,9 +131,9 @@ export {
   roadmap3,
   roadmap4,
   undone,
-  fitnessNutrition, 
-  fitness, 
-  fitnessFacilities, 
+  fitnessNutrition,
+  fitness,
+  fitnessFacilities,
   health,
   notification1,
   notification2,
@@ -148,6 +150,7 @@ export {
   benefitIcon3,
   benefitIcon4,
   benefitImage2,
+  addButton,
   discordBlack,
   facebook,
   instagram,

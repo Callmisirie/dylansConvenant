@@ -7,28 +7,48 @@ import ClipPath from "../assets/svg/ClipPath";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { addButton } from "../assets";
+import Input from "./Input";
+import TextArea from "./TextArea";
 
 const Targets = () => {
   const [userIDCookies, setUserIDCookies] = useCookies(["userID"]);
   const [goals, setGoals] = useState([]);
 
-  useEffect(() => {
-    const fetchTargets = async () => {
-      try {
-        const targetsResponse = await axios.get(
-          "http://localhost:4001/target/read",
-          {
-            params: { userID: userIDCookies.userID },
-          }
-        );
-        const { userTargets } = targetsResponse.data;
-        setGoals(userTargets.goals);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchTargets();
-  }, [goals]);
+  const [goalTitle, setGoalTitle] = useState("");
+  const [goalNote, setGoalNote] = useState("");
+  // useEffect(() => {
+  //   const fetchTargets = async () => {
+  //     try {
+  //       const targetsResponse = await axios.get(
+  //         "http://localhost:4001/target/read",
+  //         {
+  //           params: { userID: userIDCookies.userID },
+  //         }
+  //       );
+  //       const { userTargets } = targetsResponse.data;
+  //       setGoals(userTargets.goals);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchTargets();
+  // }, [goals]);
+
+  function handleAddGoal() {
+    if (goalTitle.length === 0) return;
+    setGoals((preValue) => {
+      return [...preValue, { goalTitle, goalNote }];
+    });
+    window.localStorage.setItem(
+      "goals",
+      JSON.stringify([...goals, { goalTitle, goalNote }])
+    );
+
+    setGoalTitle("");
+    setGoalNote("");
+    console.log({ goalTitle, goalNote, goals });
+  }
 
   return (
     <Section id="targets">
@@ -38,58 +58,100 @@ const Targets = () => {
           title="Set Targets, Crush Them, and Set More"
         />
         <div className="flex flex-wrap gap-10 mb-10">
-          {goals?.map((goal, index) => (
+          {goals.length > 0 &&
+            goals?.map((goal, index) => (
+              <div
+                className="block relative p-0.5 
+            bg-no-repeat bg-[length:100%_100%] 
+            md:max-w-[24rem]"
+                style={{
+                  backgroundImage: `url(${benefits[index].backgroundUrl})`,
+                }}
+                key={benefits[index].id}
+              >
+                <div className="relative z-2 flex flex-col min-h-[22rem] p-[2.4rem] pointer-events-none">
+                  <h5 className="h5 mb-5">{goal?.goalTitle}</h5>
+                  <p className="body-2 mb-6 text-n-3">{goal?.goalNote}</p>
+                  <div className="flex items-center mt-auto">
+                    <img
+                      src={benefits[index].iconUrl}
+                      width={48}
+                      height={48}
+                      alt={benefits[index].title}
+                    />
+                    <p className="ml-auto font-code text-xs font-bold text-n-1 uppercase tracking-wider">
+                      Explore more
+                    </p>
+                    <Arrow />
+                  </div>
+                </div>
+                {benefits[index].light && <GradientLight />}
+                <div
+                  className="absolute inset-0.5 bg-n-8"
+                  style={{
+                    clipPath: "url(#benefits)",
+                  }}
+                >
+                  <div
+                    className="absolute inset-0 
+                opacity-0 transition-opacity 
+                hover:opacity-10"
+                  >
+                    {benefits[index].imageUrl && (
+                      <img
+                        src={benefits[index].imageUrl}
+                        width={380}
+                        height={362}
+                        alt={benefits[index].title}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+                <ClipPath />
+              </div>
+            ))}
+          <div>
             <div
               className="block relative p-0.5 
             bg-no-repeat bg-[length:100%_100%] 
             md:max-w-[24rem]"
               style={{
-                backgroundImage: `url(${benefits[index].backgroundUrl})`,
+                backgroundImage: `url(${benefits[2].backgroundUrl})`,
               }}
-              key={benefits[index].id}
             >
-              <div className="relative z-2 flex flex-col min-h-[22rem] p-[2.4rem] pointer-events-none">
-                <h5 className="h5 mb-5">{goal.title}</h5>
-                <p className="body-2 mb-6 text-n-3">{goal.note}</p>
-                <div className="flex items-center mt-auto">
-                  <img
-                    src={benefits[index].iconUrl}
-                    width={48}
-                    height={48}
-                    alt={benefits[index].title}
-                  />
-                  <p className="ml-auto font-code text-xs font-bold text-n-1 uppercase tracking-wider">
-                    Explore more
-                  </p>
-                  <Arrow />
-                </div>
-              </div>
-              {benefits[index].light && <GradientLight />}
-              <div
-                className="absolute inset-0.5 bg-n-8"
-                style={{
-                  clipPath: "url(#benefits)",
-                }}
-              >
-                <div
-                  className="absolute inset-0 
-                opacity-0 transition-opacity 
-                hover:opacity-10"
+              <div className="relative z-2 flex flex-col justify-center items-center min-h-[22rem] p-[2.4rem]">
+                <Input
+                  handleChange={setGoalTitle}
+                  value={goalTitle}
+                  name="goalTitle "
+                  placeholder="Title"
+                  type="text"
+                />
+                <TextArea
+                  setValue={setGoalNote}
+                  value={goalNote}
+                  name="goalNote "
+                  placeholder="Note"
+                  type="text"
+                />
+                <button
+                  className={`${
+                    goals.length < 6 ? "cursor-pointer" : " cursor-not-allowed"
+                  }`}
+                  disabled={goals.length < 6 ? false : true}
+                  onClick={handleAddGoal}
                 >
-                  {benefits[index].imageUrl && (
-                    <img
-                      src={benefits[index].imageUrl}
-                      width={380}
-                      height={362}
-                      alt={benefits[index].title}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
+                  <img
+                    src={addButton}
+                    alt="Add Button"
+                    width={96}
+                    height={96}
+                  />
+                </button>
               </div>
-              <ClipPath />
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </Section>

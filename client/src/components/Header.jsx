@@ -55,11 +55,11 @@ const Header = () => {
   };
 
   const handleIconClick = () => {
+    window.scrollTo(0, 0);
     if (!openNavigation) return;
 
     enablePageScroll();
     setOpenNavigation(false);
-    window.scrollTo(0, 0);
   };
 
   const loops = ["/signup", "/login"];
@@ -71,8 +71,11 @@ const Header = () => {
       }`}
     >
       <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-        <Link className="block w-[12rem] xl:mr-8" to="/"
-        onClick={handleIconClick}>
+        <Link
+          className="fixed w-[12rem] xl:mr-8"
+          to="/"
+          onClick={handleIconClick}
+        >
           <img src={hamsa} width={50} height={20} alt="hamsa" />
         </Link>
         <nav
@@ -108,14 +111,16 @@ const Header = () => {
                     className={`block relative font-code text-2xl uppercase text-n-1 transition-colors hover:text-color-1 ${
                       item.onlyMobile ? "lg:hidden" : ""
                     } px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-xs lg:font-semibold ${
-                      item.url === pathname ? "z-2 lg:text-n-1" : "lg:text-n-1/50"
+                      item.url === pathname
+                        ? "z-2 lg:text-n-1"
+                        : "lg:text-n-1/50"
                     } lg:leading-5 lg:hover:text-n-1 xl:px-12`}
                   >
                     {item.title}
                   </Link>
                 ) : null;
               }
-              if (item.out === "out" ){
+              if (item.out === "out") {
                 return cookies.userAccess_token ? (
                   <Link
                     key={item.id}
@@ -124,7 +129,9 @@ const Header = () => {
                     className={`block relative font-code text-2xl uppercase text-n-1 transition-colors hover:text-color-1 ${
                       item.onlyMobile ? "lg:hidden" : ""
                     } px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-xs lg:font-semibold ${
-                      item.url === pathname ? "z-2 lg:text-n-1" : "lg:text-n-1/50"
+                      item.url === pathname
+                        ? "z-2 lg:text-n-1"
+                        : "lg:text-n-1/50"
                     } lg:leading-5 lg:hover:text-n-1 xl:px-12`}
                   >
                     {item.title}
@@ -135,7 +142,7 @@ const Header = () => {
           </div>
           <HamburgerMenu />
         </nav>
-        {!cookies.userAccess_token ? (
+        {/* {!cookies.userAccess_token ? (
           <>
             <Link
               to="/signup"
@@ -152,7 +159,7 @@ const Header = () => {
           <Button className="hidden lg:flex" href="/" out="out">
             Sign out
           </Button>
-        ) : null}
+        ) : null} */}
         <Button
           className="ml-auto lg:hidden"
           px="px-3"

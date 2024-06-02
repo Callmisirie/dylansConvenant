@@ -10,9 +10,9 @@ import {
   discordBlack,
   facebook,
   figma,
-  fitnessNutrition, 
-  fitness, 
-  fitnessFacilities, 
+  fitnessNutrition,
+  fitness,
+  fitnessFacilities,
   health,
   framer,
   instagram,
@@ -41,33 +41,33 @@ export const navigation = [
     id: "0",
     title: "Home",
     hash: "#hero",
-    url: "/"
+    url: "/",
   },
   {
     id: "1",
     title: "Targets",
     hash: "#targets",
-    url: "/"
-  },
-  {
-    id: "2",
-    title: "New account",
-    url: "/signup",
-    onlyMobile: true,
-  },
-  {
-    id: "3",
-    title: "Sign in",
-    url: "/login",
-    onlyMobile: true,
-  },
-  {
-    id: "4",
-    title: "Sign out",
     url: "/",
-    out: "out",
-    onlyMobile: true,
   },
+  // {
+  //   id: "2",
+  //   title: "New account",
+  //   url: "/signup",
+  //   onlyMobile: true,
+  // },
+  // {
+  //   id: "3",
+  //   title: "Sign in",
+  //   url: "/login",
+  //   onlyMobile: true,
+  // },
+  // {
+  //   id: "4",
+  //   title: "Sign out",
+  //   url: "/",
+  //   out: "out",
+  //   onlyMobile: true,
+  // },
 ];
 
 export const heroIcons = [fitnessNutrition, fitness, fitnessFacilities, health];
@@ -208,18 +208,12 @@ export const form = [
   {
     id: "0",
     title: "Register",
-    features: [
-      "Email",
-      "Password",
-    ]
+    features: ["Email", "Password"],
   },
   {
     id: "1",
     title: "Login",
-    features: [
-      "Email",
-      "Password",
-    ]
+    features: ["Email", "Password"],
   },
 ];
 

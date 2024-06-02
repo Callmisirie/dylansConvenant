@@ -14,40 +14,24 @@ import TextArea from "./TextArea";
 const Targets = () => {
   const [userIDCookies, setUserIDCookies] = useCookies(["userID"]);
   const [goals, setGoals] = useState([]);
-
   const [goalTitle, setGoalTitle] = useState("");
   const [goalNote, setGoalNote] = useState("");
-  // useEffect(() => {
-  //   const fetchTargets = async () => {
-  //     try {
-  //       const targetsResponse = await axios.get(
-  //         "http://localhost:4001/target/read",
-  //         {
-  //           params: { userID: userIDCookies.userID },
-  //         }
-  //       );
-  //       const { userTargets } = targetsResponse.data;
-  //       setGoals(userTargets.goals);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchTargets();
-  // }, [goals]);
+
+  useEffect(() => {
+    const storedGoals = localStorage.getItem("goals");
+    if (storedGoals) {
+      setGoals(JSON.parse(storedGoals));
+    }
+  }, []);
 
   function handleAddGoal() {
     if (goalTitle.length === 0) return;
-    setGoals((preValue) => {
-      return [...preValue, { goalTitle, goalNote }];
-    });
-    window.localStorage.setItem(
-      "goals",
-      JSON.stringify([...goals, { goalTitle, goalNote }])
-    );
-
+    const newGoal = { goalTitle, goalNote };
+    const updatedGoals = [...goals, newGoal];
+    setGoals(updatedGoals);
+    localStorage.setItem("goals", JSON.stringify(updatedGoals));
     setGoalTitle("");
     setGoalNote("");
-    console.log({ goalTitle, goalNote, goals });
   }
 
   return (
@@ -59,25 +43,25 @@ const Targets = () => {
         />
         <div className="flex flex-wrap gap-10 mb-10">
           {goals.length > 0 &&
-            goals?.map((goal, index) => (
+            goals.map((goal, index) => (
               <div
-                className="block relative p-0.5 
-            bg-no-repeat bg-[length:100%_100%] 
-            md:max-w-[24rem]"
+                className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[24rem]"
                 style={{
-                  backgroundImage: `url(${benefits[index].backgroundUrl})`,
+                  backgroundImage: `url(${
+                    benefits[index % benefits.length].backgroundUrl
+                  })`,
                 }}
-                key={benefits[index].id}
+                key={index}
               >
                 <div className="relative z-2 flex flex-col min-h-[22rem] p-[2.4rem] pointer-events-none">
-                  <h5 className="h5 mb-5">{goal?.goalTitle}</h5>
-                  <p className="body-2 mb-6 text-n-3">{goal?.goalNote}</p>
+                  <h5 className="h5 mb-5">{goal.goalTitle}</h5>
+                  <p className="body-2 mb-6 text-n-3">{goal.goalNote}</p>
                   <div className="flex items-center mt-auto">
                     <img
-                      src={benefits[index].iconUrl}
+                      src={benefits[index % benefits.length].iconUrl}
                       width={48}
                       height={48}
-                      alt={benefits[index].title}
+                      alt={benefits[index % benefits.length].title}
                     />
                     <p className="ml-auto font-code text-xs font-bold text-n-1 uppercase tracking-wider">
                       Explore more
@@ -85,24 +69,20 @@ const Targets = () => {
                     <Arrow />
                   </div>
                 </div>
-                {benefits[index].light && <GradientLight />}
+                {benefits[index % benefits.length].light && <GradientLight />}
                 <div
                   className="absolute inset-0.5 bg-n-8"
                   style={{
                     clipPath: "url(#benefits)",
                   }}
                 >
-                  <div
-                    className="absolute inset-0 
-                opacity-0 transition-opacity 
-                hover:opacity-10"
-                  >
-                    {benefits[index].imageUrl && (
+                  <div className="absolute inset-0 opacity-0 transition-opacity hover:opacity-10">
+                    {benefits[index % benefits.length].imageUrl && (
                       <img
-                        src={benefits[index].imageUrl}
+                        src={benefits[index % benefits.length].imageUrl}
                         width={380}
                         height={362}
-                        alt={benefits[index].title}
+                        alt={benefits[index % benefits.length].title}
                         className="w-full h-full object-cover"
                       />
                     )}
@@ -113,9 +93,7 @@ const Targets = () => {
             ))}
           <div>
             <div
-              className="block relative p-0.5 
-            bg-no-repeat bg-[length:100%_100%] 
-            md:max-w-[24rem]"
+              className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[24rem]"
               style={{
                 backgroundImage: `url(${benefits[2].backgroundUrl})`,
               }}
@@ -139,7 +117,7 @@ const Targets = () => {
                   className={`${
                     goals.length < 6 ? "cursor-pointer" : " cursor-not-allowed"
                   }`}
-                  disabled={goals.length < 6 ? false : true}
+                  disabled={goals.length >= 6}
                   onClick={handleAddGoal}
                 >
                   <img

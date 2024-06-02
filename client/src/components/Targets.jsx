@@ -7,7 +7,7 @@ import ClipPath from "../assets/svg/ClipPath";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { addButton } from "../assets";
+import { addButton, deleteButton } from "../assets";
 import Input from "./Input";
 import TextArea from "./TextArea";
 
@@ -34,6 +34,12 @@ const Targets = () => {
     setGoalNote("");
   }
 
+  function handleDeleteGoal(index) {
+    const updatedGoals = goals.filter((_, i) => i !== index);
+    setGoals(updatedGoals);
+    localStorage.setItem("goals", JSON.stringify(updatedGoals));
+  }
+
   return (
     <Section id="targets">
       <div className="container relative z-2 mt-10 lg:mt-5">
@@ -53,9 +59,33 @@ const Targets = () => {
                 }}
                 key={index}
               >
+                <button
+                  onClick={() => {
+                    handleDeleteGoal(index);
+                  }}
+                  className="cursor-pointer absolute top-[12%] left-[70%] z-10"
+                >
+                  <img
+                    width={48}
+                    height={48}
+                    src={deleteButton}
+                    alt="Delete Button"
+                    className="cursor-pointer"
+                  />
+                </button>
                 <div className="relative z-2 flex flex-col min-h-[22rem] p-[2.4rem] pointer-events-none">
-                  <h5 className="h5 mb-5">{goal.goalTitle}</h5>
-                  <p className="body-2 mb-6 text-n-3">{goal.goalNote}</p>
+                  <div className="flex justify-between items-center">
+                    <h5 className="h5 my-2 font-code max-w-[12rem] whitespace-normal break-words">
+                      {goal.goalTitle}
+                    </h5>
+                  </div>
+
+                  <div className="flex items-start py-5 border-t border-n-6 mt-5 w-[16rem]" />
+                  <p className="body-2 mb-6 text-n-3 font-code max-w-[16rem] whitespace-normal break-words">
+                    {goal.goalNote}
+                  </p>
+
+                  <div className="flex items-start py-5 border-t border-n-6" />
                   <div className="flex items-center mt-auto">
                     <img
                       src={benefits[index % benefits.length].iconUrl}
@@ -63,10 +93,6 @@ const Targets = () => {
                       height={48}
                       alt={benefits[index % benefits.length].title}
                     />
-                    <p className="ml-auto font-code text-xs font-bold text-n-1 uppercase tracking-wider">
-                      Explore more
-                    </p>
-                    <Arrow />
                   </div>
                 </div>
                 {benefits[index % benefits.length].light && <GradientLight />}
@@ -91,7 +117,8 @@ const Targets = () => {
                 <ClipPath />
               </div>
             ))}
-          <div>
+
+          {goals.length < 6 ? (
             <div
               className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[24rem]"
               style={{
@@ -129,7 +156,7 @@ const Targets = () => {
                 </button>
               </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </Section>

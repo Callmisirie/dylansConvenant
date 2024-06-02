@@ -25,8 +25,8 @@ const Hero = () => {
           className="relative z-1 max-w-[62rem]
       m-auto text-center mb-[4rem] md:mb-20 lg:mb-[6rem]"
         >
-          <h1 className="h1 mb-6">
-            Explore a warrior's&nbsp;mind&nbsp;with{" "}
+          <h1 className="h1 mb-6 text-w">
+            Explore a warrior's mind with{" "}
             <span className="inline-block relative">DylansCovenant</span>
           </h1>
           <p

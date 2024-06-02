@@ -81,6 +81,7 @@ import fitnessFacilities from "./fitnessFacilities.svg";
 import health from "./health.svg";
 
 import addButton from "./addButton.svg";
+import deleteButton from "./deleteButton.svg";
 
 export {
   hamsa,
@@ -151,6 +152,7 @@ export {
   benefitIcon4,
   benefitImage2,
   addButton,
+  deleteButton,
   discordBlack,
   facebook,
   instagram,

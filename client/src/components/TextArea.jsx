@@ -6,22 +6,22 @@ const TextArea = ({ type, value, setValue, placeholder }) => {
     >
       <textarea
         className="gap-5 p-2.5 bg-transparent
-        border border-stroke-1 text-sm w-full
-        rounded-md text-center font-code"
+        border border-stroke-1 text-sm
+        rounded-md text-center font-code w-[16rem]"
         type={type}
-        value={value.length <= 30 ? value : value.slice(0, 30)}
+        value={value.length <= 60 ? value : value.slice(0, 60)}
         onChange={(e) => {
-          if (e.target.value.length <= 30) {
+          if (e.target.value.length <= 60) {
             setValue(e.target.value);
           }
         }}
         placeholder={placeholder}
       />
       <p
-        className="font-montserrat text-xs
+        className="font-code text-xs
         leading-8"
       >
-        Max char - {value.length}/30
+        Max char - {value.length}/60
       </p>
     </div>
   );

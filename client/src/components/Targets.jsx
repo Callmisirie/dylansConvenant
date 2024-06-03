@@ -7,7 +7,7 @@ import ClipPath from "../assets/svg/ClipPath";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { addButton, deleteButton } from "../assets";
+import { addButton, deleteButton, fitnessHeart } from "../assets";
 import Input from "./Input";
 import TextArea from "./TextArea";
 
@@ -88,10 +88,10 @@ const Targets = () => {
                   <div className="flex items-start py-5 border-t border-n-6" />
                   <div className="flex items-center mt-auto">
                     <img
-                      src={benefits[index % benefits.length].iconUrl}
+                      src={fitnessHeart}
                       width={48}
                       height={48}
-                      alt={benefits[index % benefits.length].title}
+                      alt="Fitness Heart"
                     />
                   </div>
                 </div>

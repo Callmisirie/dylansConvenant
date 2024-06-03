@@ -83,6 +83,8 @@ import health from "./health.svg";
 import addButton from "./addButton.svg";
 import deleteButton from "./deleteButton.svg";
 
+import fitnessHeart from "./fitnessHeart.svg";
+
 export {
   hamsa,
   check,
@@ -135,6 +137,7 @@ export {
   fitnessNutrition,
   fitness,
   fitnessFacilities,
+  fitnessHeart,
   health,
   notification1,
   notification2,

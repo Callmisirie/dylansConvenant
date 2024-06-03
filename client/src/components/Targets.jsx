@@ -51,12 +51,9 @@ const Targets = () => {
           {goals.length > 0 &&
             goals.map((goal, index) => (
               <div
-                className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[24rem]"
-                style={{
-                  backgroundImage: `url(${
-                    benefits[index % benefits.length].backgroundUrl
-                  })`,
-                }}
+                className="block relative 
+                p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[24rem] 
+                border-2 border-n-4 rounded-s-[2rem] rounded-e-[3rem] overflow-hidden"
                 key={index}
               >
                 <button
@@ -120,10 +117,8 @@ const Targets = () => {
 
           {goals.length < 6 ? (
             <div
-              className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[24rem]"
-              style={{
-                backgroundImage: `url(${benefits[2].backgroundUrl})`,
-              }}
+              className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] 
+            md:max-w-[24rem] border-2 border-n-4 rounded-s-[2rem] rounded-e-[3rem] overflow-hidden"
             >
               <div className="relative z-2 flex flex-col justify-center items-center min-h-[22rem] p-[2.4rem]">
                 <Input
